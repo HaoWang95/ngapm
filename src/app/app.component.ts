@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 
+// This is the component metadata declared in a decorator
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template:
+    `<div>
+        <h1>{{title}}</h1>
+    </div>`
 })
 export class AppComponent {
-  title = 'ng-apm';
+  title: string = 'ng-apm'; // propertyName: data type
 }

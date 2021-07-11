@@ -5,5 +5,6 @@ import {Component} from '@angular/core';
     templateUrl:'./item-list.component.html',
 })
 export class ItemListComponent {
-
+    description: string = "My list";
+    items: any[] = [];
 }

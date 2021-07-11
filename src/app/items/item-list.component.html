@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Item list
+        {{description}}
     </div>
     <div class="card-body">
         <div class="row">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" *ngIf='items.length'>
                 <thead>
                     <tr>
                         <th>
@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>

@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Iitem } from './item';
+import { ItemService } from './item.service';
 
 @Component({
     selector: 'cp-itemlist',
     templateUrl: './item-list.component.html',
-    styleUrls: ['./item-list.component.css']
+    styleUrls: ['./item-list.component.css'],
+    providers:[ItemService]
 })
 export class ItemListComponent {
+
     description: string = "My list";
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
     private _filterBy: string = '';
+    constructor(private itemService: ItemService){}
     get filterBy(): string {
         return this._filterBy; 
     }
@@ -23,30 +27,10 @@ export class ItemListComponent {
     ngOnInit(): void {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
-        this._filterBy = 'cart';
+        this.items = this.itemService.getItems();
+        this.filteredItems = this.items;
     }
-    items: Iitem[] = [
-        {
-            "productId": 1,
-            "productName": "Computer system, a programmer's perspective",
-            "productCode": "ISBN-XXX",
-            "releaseDate": "March 18,2019",
-            "description": "The book that you must read to be a programmer",
-            "price": 80,
-            "rating": 5,
-            "imageUrl": "",
-        },
-        {
-            "productId": 5,
-            "productName": "High Performance MySql",
-            "productCode": "ISBN-XXX",
-            "releaseDate": "March 18,2019",
-            "description": "The book that you must read to be a programmer",
-            "price": 80,
-            "rating": 5,
-            "imageUrl": "",
-        }
-    ];
+    items: Iitem[] = [];
     filteredItems: Iitem[] = [];
 
     toggleImage(): void {
@@ -57,5 +41,9 @@ export class ItemListComponent {
         return this.items.filter(
             (item: Iitem) => item.productName.toLocaleLowerCase().includes(value)
         )
+    }
+
+    onRatingClicked(value: number): void{
+        this.description= `Rating ${value.toString()} is clicked`
     }
 }

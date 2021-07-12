@@ -41,7 +41,10 @@
                         <td>{{item.releaseDate | date | uppercase}}</td>
                         <td>{{item.price | currency:'USD':'symbol':'1.2-2'}}</td>
                         <td>
-                            <star></star>
+                            <star 
+                                [rating]='item.rating'
+                                (ratingClicked)="onRatingClicked($event)"
+                            ></star>
                         </td>
                     </tr>
                 </tbody>

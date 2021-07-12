@@ -32,15 +32,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of items">
+                    <tr *ngFor="let item of filteredItems">
                         <td>
                             <img  />
                         </td>
                         <td>{{item.productName}}</td>
-                        <td>{{item.productCode | lowercase}}</td>
+                        <td>{{item.productCode | lowercase | convertToSpaces:'-'}}</td>
                         <td>{{item.releaseDate | date | uppercase}}</td>
                         <td>{{item.price | currency:'USD':'symbol':'1.2-2'}}</td>
-                        <td>{{item.rating}}</td>
+                        <td>
+                            <star></star>
+                        </td>
                     </tr>
                 </tbody>
             </table>

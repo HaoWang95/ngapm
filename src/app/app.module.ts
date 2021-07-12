@@ -6,17 +6,28 @@ import { AppComponent } from './app.component';
 import { ItemListComponent } from './items/item-list.component';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { StarComponent } from './shared/star/star.component';
+import { ItemDetailComponent } from './items/item-detail/item-detail.component';
+import { RouterModule } from '@angular/router';
+import { WelcomeComponent } from './app/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
     StarComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    ItemDetailComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {path:'items', component: ItemListComponent},
+      {path:'items/:id', component: ItemDetailComponent},
+      {path:'welcome', component: WelcomeComponent},
+      {path:'', redirectTo: 'welcome', pathMatch:'full'},
+      {path:'**', redirectTo:'welcome', pathMatch:'full'},
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]

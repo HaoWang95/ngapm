@@ -9,6 +9,7 @@ import { StarComponent } from './shared/star/star.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { RouterModule } from '@angular/router';
 import { WelcomeComponent } from './app/welcome/welcome.component';
+import { ItemDetailGuard } from './items/item-detail/item-detail.guard';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,11 @@ import { WelcomeComponent } from './app/welcome/welcome.component';
     FormsModule,
     RouterModule.forRoot([
       {path:'items', component: ItemListComponent},
-      {path:'items/:id', component: ItemDetailComponent},
+      {
+        path:'items/:id',
+        canActivate: [ItemDetailGuard], 
+        component: ItemDetailComponent
+      },
       {path:'welcome', component: WelcomeComponent},
       {path:'', redirectTo: 'welcome', pathMatch:'full'},
       {path:'**', redirectTo:'welcome', pathMatch:'full'},
